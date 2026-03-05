@@ -7,8 +7,8 @@ Ma demarche :
 
 Interactions possibles : 
 - Faire tourner en survol
-- Changer la couleur en clic
-- 
+- Changer la couleur des fleurs en clic
+- Bouton qui change les lummière (journée, soir, crépuscule)
 
 Attributions 
 - <a href="https://www.flaticon.com/free-icons/horizon" title="horizon icons">Horizon icons created by RIkas Dzihab - Flaticon</a>

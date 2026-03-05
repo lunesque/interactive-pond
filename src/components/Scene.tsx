@@ -3,6 +3,7 @@ import { Lights } from "./Lights";
 import { Lily } from './Lily';
 import { LilyPad } from "./LilyPad";
 import { SwitchLightingButton } from './SwitchLightingButton/SwitchLightingButton.tsx';
+import { Ripple } from "./Ripple.tsx";
 
 export function Scene() {
   return (
@@ -19,6 +20,7 @@ export function Scene() {
       <LilyPad position={{x: -1, y: 0, z: -0.5}}/>
       <LilyPad position={{x: -5, y: 0, z: -1}}/>
       <LilyPad position={{x: 5, y: 0, z: -1}}/>
+
     </>
   )
 }

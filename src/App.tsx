@@ -1,7 +1,7 @@
 import './App.css';
 import { Canvas } from '@react-three/fiber';
 import { Scene } from './components/Scene';
-import { OrbitControls } from '@react-three/drei';
+import { Html, OrbitControls } from '@react-three/drei';
 
 function App() {
 
@@ -12,8 +12,9 @@ function App() {
 	          fov: 75,
 	          near: 0.1, 
 	          far: 100,
-	          position: [0, 2, 6]
+	          position: [0, 3, 6]
 	        }}>
+          
           <Scene />
           {/* <OrbitControls /> */}
         </Canvas>

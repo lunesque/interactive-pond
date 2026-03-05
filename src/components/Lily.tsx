@@ -8,6 +8,7 @@ import { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import type { LilyProps } from '../types/lily';
 import { allLilyMaterials } from '../reusables/materials';
+import { Ripple } from './Ripple';
 
 export function Lily({ position }: LilyProps) {
   const lilyRef = useRef<Mesh>(null); // On stocke le mesh qu'on veut animer dans une ref
@@ -62,49 +63,52 @@ export function Lily({ position }: LilyProps) {
 	});
 
   return (
-    <mesh 
-      onPointerOver={() => setIsActive(true)} 
-      onPointerOut={() => setIsActive(false)} 
-      onClick={changeColor}
-      ref={lilyRef} 
-      position={[position.x, position.y, position.z]}
-      >  
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Circle001.geometry}
-        material={new MeshStandardMaterial({ color: lilyPadColor})}
-        position={[lilyPadPosition.x,lilyPadPosition.y,lilyPadPosition.z]}
-        rotation={[Math.PI / 2, 0, 2]}
-        scale={0.01}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Icosphere031.geometry}
-        // material={new MeshStandardMaterial({ color: 0xfdfd96})}
-        material={new MeshStandardMaterial({ color: lilyPistilColor})}
-        position={[lilyPosition.x, lilyPosition.y, lilyPosition.z]}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={0.01}>
-          <mesh
+    <>
+      <mesh 
+        onPointerOver={() => setIsActive(true)} 
+        onPointerOut={() => setIsActive(false)} 
+        onClick={changeColor}
+        ref={lilyRef} 
+        position={[position.x, position.y, position.z]}
+        >  
+        <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Plane007.geometry}
-          // material={new MeshStandardMaterial({ color: lilyColor})}
-          material={allLilyMaterials[lilyMaterialIndex]}
-          position={[0, 0, -7.4]}
-          />
-          <mesh
+          geometry={nodes.Circle001.geometry}
+          material={new MeshStandardMaterial({ color: lilyPadColor})}
+          position={[lilyPadPosition.x,lilyPadPosition.y,lilyPadPosition.z]}
+          rotation={[Math.PI / 2, 0, 2]}
+          scale={0.01}
+        />
+        <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Plane009.geometry}
-          // material={new MeshStandardMaterial({ color: lilyColor})}
-          material={allLilyMaterials[lilyMaterialIndex]}
-          position={[-2.7, -24.5, -0.7]}
-          />
+          geometry={nodes.Icosphere031.geometry}
+          // material={new MeshStandardMaterial({ color: 0xfdfd96})}
+          material={new MeshStandardMaterial({ color: lilyPistilColor})}
+          position={[lilyPosition.x, lilyPosition.y, lilyPosition.z]}
+          rotation={[Math.PI / 2, 0, 0]}
+          scale={0.01}>
+            <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Plane007.geometry}
+            // material={new MeshStandardMaterial({ color: lilyColor})}
+            material={allLilyMaterials[lilyMaterialIndex]}
+            position={[0, 0, -7.4]}
+            />
+            <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Plane009.geometry}
+            // material={new MeshStandardMaterial({ color: lilyColor})}
+            material={allLilyMaterials[lilyMaterialIndex]}
+            position={[-2.7, -24.5, -0.7]}
+            />
+        </mesh>
       </mesh>
-    </mesh>
+      <Ripple position={position} />
+    </>
   )
 }
 

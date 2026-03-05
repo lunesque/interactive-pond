@@ -7,26 +7,13 @@ import { useControls } from "leva";
 import { useFrame } from '@react-three/fiber';
 import { useRef, useState } from 'react';
 import type { LilyProps } from '../types/lily';
+import { Ripple } from './Ripple';
 
 export function LilyPad({ position }: LilyProps) {
   const [isActive, setIsActive] = useState(false);
 
   const { nodes } = useGLTF('/water-lily.glb')
   const lilyPadRef = useRef<Mesh>(null); // On stocke le mesh qu'on veut animer dans une ref
-  
-  const { lilyPadColor: lilyPadColor, lilyPadPosition: lilyPadPosition } = useControls('Lily Pad', {
-        lilyPadColor: {
-            label: 'Lily pad color', 
-            value: '#00BB77'
-        },
-        lilyPadPosition: {
-            label: 'lilyPadPosition',
-            value: { x: 2, y: 0, z: 0 },
-            step: 0.1,
-            min: -20,
-            max: 20
-        }
-    })
   
   //Animation 
   useFrame((state, delta) => { 
@@ -37,19 +24,22 @@ export function LilyPad({ position }: LilyProps) {
   
 
   return (
-    <mesh
-      onPointerOver={() => setIsActive(true)} 
-      onPointerOut={() => setIsActive(false)}
-      ref={lilyPadRef}
-      castShadow
-      receiveShadow
-      geometry={nodes.Circle001.geometry}
-      material={new MeshStandardMaterial({ color: lilyPadColor})}
-      // position={[lilyPadPosition.x,lilyPadPosition.y,lilyPadPosition.z]}
-      position={[position.x, position.y, position.z]}
-      rotation={[Math.PI / 2, 0, 0]}
-      scale={0.012}
-    />
+    <>
+      <mesh
+        onPointerOver={() => setIsActive(true)} 
+        onPointerOut={() => setIsActive(false)}
+        ref={lilyPadRef}
+        castShadow
+        receiveShadow
+        geometry={nodes.Circle001.geometry}
+        material={new MeshStandardMaterial({ color: '#00BB77'})}
+        // position={[lilyPadPosition.x,lilyPadPosition.y,lilyPadPosition.z]}
+        position={[position.x, position.y, position.z]}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.012}
+      />
+      <Ripple position={position} />
+    </>
   )
 }
 
